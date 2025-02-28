@@ -1,0 +1,24 @@
+:root {
+    --Dark-Grey: #121212;
+    --White-8dp: #FFFFFF14;
+    --White-16dp: #FFFFFF29;
+    --White-24dp: #FFFFFF3D;
+    --White-32dp: #FFFFFF52;
+    --White-40dp: #FFFFFF66;
+
+    --Light-Purple: #BB86FC;
+    --Light-Purple-Transparent: #BB86FC66;
+    --Light-Orange: #F2964B;
+    --Error-Red: #F75E3B;
+}
+
+body {
+    background-color: var(--Dark-Grey);
+    color: white;
+    font-family: "Open Sans", sans-serif;
+}
+
+.card {
+    background-color: var(--White-8dp);
+    border-radius: .2rem;
+}
