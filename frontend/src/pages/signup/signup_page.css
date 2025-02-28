@@ -1,0 +1,52 @@
+form {
+    display: flex;
+    flex-direction: column;
+
+    & > * + * {
+        margin-block-start: .9rem;
+    }
+}
+
+input[type='email'], input[type='text'], input[type='password'] {
+    background-color: unset;
+    color: white;
+    border: none;
+    border-bottom: 1px solid var(--Light-Purple);
+    transition: border-bottom 300ms ease-out;
+
+    height: 2.4rem;
+    font-size: larger;
+
+    /* Hack to prevent chrome autofill styles from applying */
+    transition:
+        color calc(infinity * 1s) step-end,
+        background-color calc(infinity * 1s) step-end;
+
+    &:focus {
+        outline: none;
+        border-bottom: 1px solid var(--Light-Orange);
+    }
+
+    &:is(:-webkit-autofill, :autofill) {
+        border-bottom: 1px solid white;
+    }
+}
+
+input[type='submit'], button {
+    color: white;
+    border: none;
+    background-color: var(--White-24dp);
+    width: 8rem;
+    height: 3.1rem;
+
+    transition: background-color 450ms ease-out;
+    &:hover {
+        background-color: var(--White-16dp);
+    }
+}
+
+.button-spacer {
+    margin-block-start: 2.1rem;
+    display: flex;
+    justify-content: space-around;
+}

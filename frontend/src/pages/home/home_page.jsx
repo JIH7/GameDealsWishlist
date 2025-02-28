@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import "./home_page.css";
 
-function HomePage({ gameList }) {
+const HomePage = ({ gameList, updateList }) => {
+    // Fetch game list when component mounts
+    useEffect(() => updateList, []);
+
     return (
         <>
         <h1>Games List</h1>
@@ -11,7 +15,7 @@ function HomePage({ gameList }) {
                 return (<p key={i}>{el.title}: Desired price is {el.desired_price} {el.id}</p>)
                 })
                 ) : (
-                <p>Gamelist does not exist</p>
+                <p>Gamelist is empty</p>
                 )
             }
         </main>
