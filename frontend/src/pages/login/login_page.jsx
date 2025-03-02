@@ -1,6 +1,11 @@
+import { useEffect } from "react";
+
 import "./login_page.css";
 
 const LoginPage = ({ setCurrentPage }) => {
+    const $ = selector => document.querySelector(selector);
+
+    useEffect(() => $("#username").focus(), []);
 
     return (
     <>

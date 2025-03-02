@@ -4,11 +4,15 @@ import "./signup_page.css";
 
 const SignupPage = ({ signupUser, formErrors }) => {
     const $ = selector => document.querySelector(selector);
+    const $all = selector => document.querySelectorAll(selector);
 
+    useEffect(() => $("#email").focus(), []);
+
+    // Select first error field when errors are passed
     useEffect(() => {
-        document.querySelector("#email").focus();
-    }, [])
-
+        if (formErrors.some(el => el != null))
+            $all(".err-field")[0].select();
+    }, [formErrors]);
 
     return (
     <>

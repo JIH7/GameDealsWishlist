@@ -27,7 +27,7 @@ function App() {
     }
   };
 
-  const signupUser = (email, username, password1, password2) => {
+  const signupUser = async (email, username, password1, password2) => {
     const signupErrorBuffer = [null, null, null, null];
     if (!email)
       signupErrorBuffer[0] = "Field may not be empty";
@@ -41,7 +41,22 @@ function App() {
     if (password1 && password1 != password2)
       signupErrorBuffer[2] = "Passwords must match";
 
-    console.log(signupErrorBuffer);
+    if (!signupErrorBuffer.some(el => el != null)) {
+      const response = await axios.get(`http://localhost:8000/api/users/?email=${email}`);
+      const emailMatch = response.data;
+      console.log(emailMatch)
+      if (emailMatch && emailMatch.some(el => el.email == email))
+        signupErrorBuffer[0] = `This email is taken`;
+    }
+
+    if (!signupErrorBuffer.some(el => el != null)) {
+      const response = await axios.get(`http://localhost:8000/api/users/?username=${username}`)
+      const usernameMatch = response.data;
+      if (usernameMatch && usernameMatch.some(el => el.username == username))
+        signupErrorBuffer[1] = `This username is taken`;
+    }
+
+
     setSignupFormErrors(signupErrorBuffer);
   }
 
