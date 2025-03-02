@@ -5,6 +5,16 @@ form {
     & > * + * {
         margin-block-start: .9rem;
     }
+
+    & > div {
+        display: flex;
+        justify-content: space-between;
+
+        & > label + p {
+            color: var(--Error-Red);
+            margin: 0px;
+        }
+    }
 }
 
 input[type='email'], input[type='text'], input[type='password'] {
@@ -29,6 +39,10 @@ input[type='email'], input[type='text'], input[type='password'] {
 
     &:is(:-webkit-autofill, :autofill) {
         border-bottom: 1px solid white;
+    }
+
+    &.err-field {
+        border-bottom: 1px solid var(--Error-Red);
     }
 }
 

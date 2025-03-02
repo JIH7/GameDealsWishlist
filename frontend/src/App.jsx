@@ -28,10 +28,24 @@ function App() {
   };
 
   const signupUser = (email, username, password1, password2) => {
+    const signupErrorBuffer = [null, null, null, null];
+    if (!email)
+      signupErrorBuffer[0] = "Field may not be empty";
+    if (!username)
+      signupErrorBuffer[1] = "Field may not be empty";
+    if (!password1)
+      signupErrorBuffer[2] = "Field may not be empty";
+    if (!password2)
+      signupErrorBuffer[3] = "Field may not be empty";
 
+    if (password1 && password1 != password2)
+      signupErrorBuffer[2] = "Passwords must match";
+
+    console.log(signupErrorBuffer);
+    setSignupFormErrors(signupErrorBuffer);
   }
 
-  const getPage = (route) => {
+  const getPage = route => {
     switch (route){
       case "signup":
         return (<SignupPage signupUser={signupUser} formErrors={signupFormErrors}/>);
