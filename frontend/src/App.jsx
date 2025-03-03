@@ -73,7 +73,9 @@ const App = () => {
           "password": password1
         })
       })
-      console.log(response);
+      const user = await response.json();
+      document.cookie = `userid=${user.id}; expires=${Date.now() + 24 * 60 * 60 * 1000}`;
+      setCurrentPage("homepage");
     }
 
     setSignupFormErrors(signupErrorBuffer);

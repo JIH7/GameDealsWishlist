@@ -36,8 +36,8 @@ class UserView(viewsets.ModelViewSet):
         # Validate and save the data
         if serializer.is_valid():
             # Save the user and return a success response with status 201
-            user = serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            serializer.save()
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         else:
             errors = serializer.errors
             print(errors)
