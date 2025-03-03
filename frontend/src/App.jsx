@@ -6,9 +6,14 @@ import HomePage from './pages/home/home_page';
 import SignupPage from './pages/signup/signup_page';
 import LoginPage from './pages/login/login_page';
 
-function App() {
+const App = () => {
+  // Check if user is logged in for initial routing
+  const checkSession = () => {
+    return "login"
+  }
+
   // State to handle page routes
-  const [currentPage, setCurrentPage] = useState("login");
+  const [currentPage, setCurrentPage] = useState(checkSession());
 
   const [gameList, setGameList] = useState();
 
@@ -41,7 +46,7 @@ function App() {
     if (password1 && password1 != password2)
       signupErrorBuffer[2] = "Passwords must match";
 
-    if (!signupErrorBuffer.some(el => el != null)) {
+    if (!signupErrorBuffer[0]) {
       const response = await axios.get(`http://localhost:8000/api/users/?email=${email}`);
       const emailMatch = response.data;
       console.log(emailMatch)
@@ -49,13 +54,27 @@ function App() {
         signupErrorBuffer[0] = `This email is taken`;
     }
 
-    if (!signupErrorBuffer.some(el => el != null)) {
+    if (!signupErrorBuffer[1]) {
       const response = await axios.get(`http://localhost:8000/api/users/?username=${username}`)
       const usernameMatch = response.data;
       if (usernameMatch && usernameMatch.some(el => el.username == username))
         signupErrorBuffer[1] = `This username is taken`;
     }
 
+    if (!signupErrorBuffer.some(el => el != null)) {
+      const response = await fetch("http://localhost:8000/api/users/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "email": email,
+          "username": username,
+          "password": password1
+        })
+      })
+      console.log(response);
+    }
 
     setSignupFormErrors(signupErrorBuffer);
   }
