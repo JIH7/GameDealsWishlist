@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import "./login_page.css";
 
-const LoginPage = ({ setCurrentPage }) => {
+const LoginPage = ({ setCurrentPage, login }) => {
     const $ = selector => document.querySelector(selector);
 
     useEffect(() => $("#username").focus(), []);
@@ -17,7 +17,10 @@ const LoginPage = ({ setCurrentPage }) => {
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password"/>
                 <div className="button-spacer">
-                    <input type="submit" value={"Log in"}/>
+                    <input type="submit" value={"Log in"} onClick={async e => {
+                        e.preventDefault();
+                        await login($("#username").value, $("#password").value);
+                    }}/>
                     <button onClick={() => setCurrentPage("signup")}>Sign Up</button>
                 </div>
             </form>

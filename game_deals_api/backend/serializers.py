@@ -18,9 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create(**validated_data)
         
         if password:
-            print(password)
             user.set_password(password)
-            print(user)
             user.save()
         
         return user

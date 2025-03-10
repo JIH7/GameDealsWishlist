@@ -5,7 +5,7 @@ from .models import Game
 from .models import User
 
 class GamesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'desired_price')
+    list_display = ('id', 'title', 'desired_price', 'userid')
 
 admin.site.register(Game, GamesAdmin)
 
