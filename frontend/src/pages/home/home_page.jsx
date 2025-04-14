@@ -13,7 +13,7 @@ const HomePage = ({ gameList, updateList }) => {
             {
                 gameList ? (
                 gameList.map((el, i) => {
-                return (<p key={i}>{el.title}: Desired price is {el.desired_price} {el.id}</p>)
+                return (<GameWidget title={el.title} desiredPrice={el.desired_price} />)
                 })
                 ) : (
                 <p>Gamelist is empty</p>
