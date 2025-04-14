@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./home_page.css";
+import GameWidget from "./components/game_widget/game_widget";
 
 const HomePage = ({ gameList, updateList }) => {
     // Fetch game list when component mounts

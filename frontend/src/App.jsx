@@ -6,6 +6,9 @@ import HomePage from './pages/home/home_page';
 import SignupPage from './pages/signup/signup_page';
 import LoginPage from './pages/login/login_page';
 
+// For testing
+import GameWidget from './pages/home/components/game_widget/game_widget';
+
 const App = () => {
   // Checks for session cookie on page load
   const getCookie = () => {
@@ -144,6 +147,12 @@ const App = () => {
 
   return (
     <>
+      {
+        //Testing
+      }
+      
+      <GameWidget />
+
       {getPage(currentPage)}
     </>
   );
