@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./home_page.css";
 import GameWidget from "./components/game_widget/game_widget";
 
-const HomePage = ({ gameList, updateList }) => {
+const HomePage = ({ gameList, updateList, setCurrentPage }) => {
     // Fetch game list when component mounts
     useEffect(() => updateList, []);
 
@@ -20,6 +20,7 @@ const HomePage = ({ gameList, updateList }) => {
                 )
             }
         </main>
+        <button onClick={e => setCurrentPage("search")}>Search</button>
         </>
     )
 }

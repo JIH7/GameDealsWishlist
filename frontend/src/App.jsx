@@ -5,6 +5,7 @@ import './App.css';
 import HomePage from './pages/home/home_page';
 import SignupPage from './pages/signup/signup_page';
 import LoginPage from './pages/login/login_page';
+import SearchPage from './pages/search/search_page';
 
 const App = () => {
   // Checks for session cookie on page load
@@ -137,9 +138,11 @@ const App = () => {
       case "signup":
         return (<SignupPage signupUser={signupUser} formErrors={signupFormErrors}/>);
       case "homepage":
-        return (<HomePage gameList={gameList} updateList={updateList}/>)
+        return (<HomePage gameList={gameList} updateList={updateList} setCurrentPage={setCurrentPage}/>)
       case "login":
         return (<LoginPage setCurrentPage={setCurrentPage} login={loginUser}/>);
+      case "search":
+        return (<SearchPage />);
     }
   }
 
