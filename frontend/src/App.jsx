@@ -157,7 +157,7 @@ const App = () => {
       case "signup":
         return (<SignupPage signupUser={signupUser} formErrors={signupFormErrors}/>);
       case "homepage":
-        return (<HomePage gameList={gameList} updateList={updateList} setCurrentPage={setCurrentPage}/>)
+        return (<HomePage setCookie={setCookie} gameList={gameList} updateList={updateList} setCurrentPage={setCurrentPage}/>)
       case "login":
         return (<LoginPage setCurrentPage={setCurrentPage} login={loginUser}/>);
       case "search":

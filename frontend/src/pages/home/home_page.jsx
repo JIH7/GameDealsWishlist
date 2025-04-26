@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./home_page.css";
 import GameWidget from "./components/game_widget/game_widget";
 
-const HomePage = ({ gameList, updateList, setCurrentPage }) => {
+const HomePage = ({ gameList, updateList, setCurrentPage, setCookie }) => {
     // Fetch game list when component mounts
     useEffect(() => updateList, []);
 
@@ -20,7 +20,10 @@ const HomePage = ({ gameList, updateList, setCurrentPage }) => {
                 )
             }
         </main>
-        <button onClick={e => setCurrentPage("search")}>Search</button>
+        <footer>
+            <button onClick={e => setCurrentPage("search")}>Search</button>
+            <button onClick={() => setCookie()}>Log Out</button>
+        </footer>
         </>
     )
 }
