@@ -81,6 +81,7 @@ const App = () => {
     });
     const data = await response.json();
     console.log(data);
+    setCookie(data.id);
   }
 
   const signupUser = async (email, username, password1, password2) => {
