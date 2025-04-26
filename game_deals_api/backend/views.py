@@ -24,6 +24,20 @@ class GameView(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(self.queryset, many=True)
         return Response(serializer.data)
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+
+        # Validate and save the data
+        if serializer.is_valid():
+            # Save the user and return a success response with status 201
+            serializer.save()
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            errors = serializer.errors
+            print(errors)
+            # If the data is invalid, return a bad request response
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
     def post(self, request):

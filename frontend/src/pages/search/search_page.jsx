@@ -1,18 +1,19 @@
 import { useState } from "react";
 import "./search_page.css"
 
-const SearchResult = ({ title }) => {
+const SearchResult = ({ game, addGame }) => {
     return (
         <>
             <div className="card result">
-                <h2>{title}</h2>
-                <button>Add Game</button>
+                <img className="thumbnail" src={game.thumb} alt={game.external} />
+                <h2>{game.external}</h2>
+                <button onClick={() => addGame(game)}>Add Game</button>
             </div>
         </>
     );
 };
 
-const SearchPage = () => {
+const SearchPage = ({ addGame }) => {
     const [results, setResults] = useState([]);
 
     const searchURL = "https://www.cheapshark.com/api/1.0/games?title=";
@@ -34,7 +35,7 @@ const SearchPage = () => {
             <button onClick={getResults}>Search</button>
         </div>
         {
-            results ? (results.map(el => (<SearchResult title={el.external} />))) : (<></>)
+            results ? (results.map(el => (<SearchResult game={el} addGame={addGame} />))) : (<></>)
         }
         </>
     );

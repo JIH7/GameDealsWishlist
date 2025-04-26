@@ -3,6 +3,9 @@
     align-items: center;
     justify-content: space-between;
 
+    height: 10rem;
+    width: 85vw;
+
     padding: .1rem .7rem;
 
     margin-block-start: .5rem;
@@ -10,4 +13,12 @@
     & + & {
         margin-block-start: 1rem;
     }
+}
+
+.thumbnail {
+    height: auto;
+    width: auto;
+    max-width: 30%;
+    max-height: 80%;
+    overflow: hidden;
 }

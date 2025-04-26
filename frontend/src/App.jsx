@@ -9,11 +9,9 @@ import SearchPage from './pages/search/search_page';
 
 const App = () => {
   // Checks for session cookie on page load
+  console.log(document.cookie)
   const getCookie = () => {
     if (!document.cookie)
-      return null;
-
-    if (!document.cookie.includes(" "))
       return null;
 
     const cookieArr = document.cookie.split(" ");
@@ -133,6 +131,27 @@ const App = () => {
     setSignupFormErrors(signupErrorBuffer);
   }
 
+  const addGame = game => {
+    console.log(game);
+
+    fetch('http://127.0.0.1:8000/api/games/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: game.external,
+        desired_price: game.cheapest,
+        msrp: 80,
+        thumbnail: game.thumb,
+        userid: getCookie()
+      })
+    });
+
+    setCurrentPage("homepage");
+    updateList();
+  };
+
   const getPage = route => {
     switch (route){
       case "signup":
@@ -142,7 +161,7 @@ const App = () => {
       case "login":
         return (<LoginPage setCurrentPage={setCurrentPage} login={loginUser}/>);
       case "search":
-        return (<SearchPage />);
+        return (<SearchPage addGame={addGame} />);
     }
   }
 
