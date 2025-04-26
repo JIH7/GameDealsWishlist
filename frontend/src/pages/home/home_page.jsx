@@ -13,7 +13,7 @@ const HomePage = ({ gameList, updateList, setCurrentPage }) => {
             {
                 gameList ? (
                 gameList.map((el, i) => {
-                return (<GameWidget title={el.title} desiredPrice={el.desired_price} />)
+                return (<GameWidget img={el.thumbnail} title={el.title} desiredPrice={el.desired_price} />)
                 })
                 ) : (
                 <p>Gamelist is empty</p>

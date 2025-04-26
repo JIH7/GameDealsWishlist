@@ -12,6 +12,21 @@ main {
     width: 93%;
 }
 
+.game-widget {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & img {
+        height: 3rem;
+        width: auto;
+    }
+
+    & img + div {
+        width: 60%;
+    }
+}
+
 @media screen and (min-width: 640px) {
     main {
         width: 65%;
